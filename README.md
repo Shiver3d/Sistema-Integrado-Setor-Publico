@@ -288,6 +288,6 @@ Navigate(ScreenDetalhesProcessosAtivos; ScreenTransition.Fade)
 ## 📞 Contato
 
 - **Autor:** Daniel Lopes da Silva Figueiredo  
-- **Links:** _(adicione aqui LinkedIn, GitHub e Email)_
+- **Links:** _([LinkedIn](https://www.linkedin.com/in/daniel-lopes-shiver3d/), GitHub ( e ([Email](mailto:shiver3dcontact@gmail.com)_
 
 ---
