@@ -254,7 +254,7 @@ Portanto, não está nos planos futuros ou sequer cogitado a publicação desde 
 - [ ] **Modo Arquivar** (mover para lista de histórico via `Patch` + `Remove`)
 - [ ] **Gráficos adicionais** (por tipo, por localidade, por responsável)
 - [ ] **Validação de prazos** (atrasados, vencendo em X dias)
-- [ ] **Fluxo com Power Automate** para copiar **automatizações** para arquivar e gerar planilhas e/ou tabelas
+- [ ] **Fluxo com Power Automate** para criar **automatizações** para arquivar e gerar planilhas e/ou tabelas
 - [ ] **Perfis** com comandos condicionais por nível de acesso
 
 ---
@@ -262,6 +262,6 @@ Portanto, não está nos planos futuros ou sequer cogitado a publicação desde 
 ## 📞 Contato
 
 - **Autor:** Daniel Lopes da Silva Figueiredo  
-- **Links:** _([LinkedIn](https://www.linkedin.com/in/daniel-lopes-shiver3d/), GitHub ( e ([Email](mailto:shiver3dcontact@gmail.com)_
+- **Links:** _[LinkedIn](https://www.linkedin.com/in/daniel-lopes-shiver3d/), GitHub (você já está aqui, nyehehe) e [Email](mailto:shiver3dcontact@gmail.com)_
 
 ---
