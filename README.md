@@ -36,7 +36,7 @@ O **MAP** organiza o ciclo de vida das solicitações públicas (ex.: obras, ser
 - Cadastro de solicitações com **prazo previsto**, **tipo**, **localidade** e **responsável**  
 - **Validação**/triagem e **edição** dos dados  
 - **Visualização** consolidada via **dashboard** (processos por status)  
-- **Exclusão** (ou arquivamento) controlada
+- **Exclusão** controlada
 
 O back‑end é uma lista do **SharePoint** (`Solicitacoes`), o que facilita governança, segurança e integração com **Power Automate**.
 
@@ -46,8 +46,8 @@ O back‑end é uma lista do **SharePoint** (`Solicitacoes`), o que facilita gov
 
 - **CRUD completo** de processos (Create, Read, Update, Delete)
 - **Campos Choice** e **Pessoa** com mapeamento correto para SharePoint
-- **Dashboard interno** com KPIs e gráficos por **Status**
-- **Filtro por prazos** e estados operacionais
+- **Dashboard interno** com KPIs e (futuramente) gráficos por **Status**
+- **Campo de prazos** e estados operacionais
 - **Confirmação de exclusão** com feedback visual
 - **Design consistente** (header, cards, containers e sombras)
 
@@ -101,12 +101,12 @@ Campos usuais (mapeamento do app):
 
 **Objetivo:** visão de saúde operacional dos processos.
 
-**KPIs** (exemplos):
+**KPIs adicionados até o momento**:
 - **Processos Abertos**  
 - **Processos Cancelados**  
 - **Processos Aguardando Retorno**
 
-**Gráficos** (opcional): pizza/coluna agrupando por `Status`.
+**Gráficos** (futuramente): pizza/coluna agrupando por `Status`.
 
 ---
 
@@ -174,10 +174,10 @@ Campos usuais (mapeamento do app):
 **Ação principal:**
 ```powerapps
 If(
-    IsBlank(varRegistroParaExcluir) || IsBlank(varRegistroParaExcluir.ID);
+    IsBlank(ProcessosGaleria) || IsBlank(ProcessosGaleria.ID);
     Notify("Nenhum registro selecionado."; NotificationType.Error);
     IfError(
-        Remove([@Solicitacoes]; varRegistroParaExcluir);
+        Remove([@Solicitacoes]; ProcessosGaleria);
         Notify("Erro ao excluir."; NotificationType.Error);
         Notify("Registro excluído com sucesso."; NotificationType.Success);
         Refresh([@Solicitacoes]);
@@ -202,23 +202,6 @@ CountRows( Filter(Solicitacoes; Status.Value = "Cancelada") )
 
 // Aguardando Retorno
 CountRows( Filter(Solicitacoes; Status.Value = "Aguardando Retorno") )
-```
-
-### 2) **Gráfico por Status** (simples e sem colunas aninhadas)
-```powerapps
-// Items do gráfico (Pie/Column)
-With(
-    {
-        base: AddColumns(Solicitacoes; "StatusTxt"; Coalesce(Status.Value; "Sem status"))
-    };
-    ShowColumns(
-        AddColumns(
-            GroupBy(base; "StatusTxt"; "Grp");
-            "Qtd"; CountRows(Grp)
-        );
-        "StatusTxt"; "Qtd"
-    )
-)
 ```
 
 ### 3) **Choices — configuração correta**
@@ -247,17 +230,8 @@ Navigate(ScreenDetalhesProcessosAtivos; ScreenTransition.Fade)
 
 ## 🚀 Instalação & Publicação
 
-1. **Conexões**  
-   - Adicione a conexão com **SharePoint**  
-   - Conecte a lista **`Solicitacoes`** (crie conforme a arquitetura acima)
-
-2. **Importação (se aplicável)**  
-   - Importe a solução/app no ambiente desejado  
-   - Repare as conexões na primeira abertura
-
-3. **Publicar e compartilhar**  
-   - *File → Save → Publish*  
-   - *Share* com os usuários/grupos (perfis de acesso abaixo)
+**EXTREMAMENTE IMPORTANTE: O PROJETO FOI REALIZADO PARA FINS DE ESTUDO E NÃO É PÚBLICO**
+Portanto, não está nos planos futuros ou sequer cogitado a publicação desde o início do projeto.
 
 ---
 
@@ -275,13 +249,13 @@ Navigate(ScreenDetalhesProcessosAtivos; ScreenTransition.Fade)
 
 ---
 
-## 🧭 Roadmap
+## 🧭 Roadmap de futuras implementações possíveis
 
-- [ ] Modo **Arquivar** (mover para lista de histórico via `Patch` + `Remove`)
+- [ ] **Modo Arquivar** (mover para lista de histórico via `Patch` + `Remove`)
 - [ ] **Gráficos adicionais** (por tipo, por localidade, por responsável)
 - [ ] **Validação de prazos** (atrasados, vencendo em X dias)
-- [ ] Fluxo **Power Automate** para copiar **anexos** ao arquivar
-- [ ] **Perfis**/papéis com comandos condicionais por nível de acesso
+- [ ] **Fluxo com Power Automate** para copiar **automatizações** para arquivar e gerar planilhas e/ou tabelas
+- [ ] **Perfis** com comandos condicionais por nível de acesso
 
 ---
 
